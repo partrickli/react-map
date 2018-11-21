@@ -1,12 +1,8 @@
 import React from 'react';
-import { GoogleApiWrapper } from 'google-maps-react';
-class MapContainer extends React.Component {
+import { GoogleApiWrapper, Map } from 'google-maps-react';
+export class MapContainer extends React.Component {
   render() {
-    if (!this.props.loaded) {
-      return <div>Loading...</div>;
-    } else {
-      return <div>Map will go here</div>;
-    }
+    return <Map google={this.props.google} zoom={14} />;
   }
 }
 
