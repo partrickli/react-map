@@ -6,11 +6,27 @@ import LocationList from './LocationList';
 const locations = [
   {
     id: 'jfdifjhiw3we',
-    name: 'Star Bucks',
+    coordinate: {
+      lat: 28.017153,
+      lng: 120.612753,
+    },
+    name: 'Home',
   },
   {
     id: 'orutrn93958',
     name: 'KFC',
+  },
+  {
+    id: 'djif',
+    name: 'Work',
+  },
+  {
+    id: 'ijeijigpe',
+    name: 'Shoping Mall',
+  },
+  {
+    id: 'dijfidoijfodios',
+    name: 'Park',
   },
 ];
 class App extends Component {
@@ -18,7 +34,7 @@ class App extends Component {
     return (
       <div>
         <LocationList locations={locations} />
-        <MapContainer />
+        {/* <MapContainer locations={locations} /> */}
       </div>
     );
   }

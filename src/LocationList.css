@@ -1,11 +1,12 @@
 .location-list {
-  background-color: lightblue;
+  background-color: lightgray;
+  font-size: 2em;
   z-index: 100;
   position: absolute;
   left: 0px;
   height: 100%;
-  width: 400px;
-  opacity: 0.6;
-  color: darkblue;
-  text-shadow: 0.1em 0.1em wheat;
+  width: 100%;
+  opacity: 0.9;
+  color: darkslateblue;
+  text-shadow: 0.05em 0.05em white;
 }
