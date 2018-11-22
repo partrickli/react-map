@@ -1,0 +1,11 @@
+.location-list {
+  background-color: lightblue;
+  z-index: 100;
+  position: absolute;
+  left: 0px;
+  height: 100%;
+  width: 400px;
+  opacity: 0.6;
+  color: darkblue;
+  text-shadow: 0.1em 0.1em wheat;
+}
