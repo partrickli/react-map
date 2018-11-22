@@ -9,8 +9,8 @@ function LocationList(props) {
       <input
         className="search"
         onChange={(event) => {
-          console.log('search key word change');
           console.log(event.target.value);
+          props.keywordChange(event.target.value);
         }}
       />
       <ul>

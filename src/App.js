@@ -3,7 +3,7 @@ import './App.css';
 import MapContainer from './MapContainer';
 import LocationList from './LocationList';
 
-const locations = [
+const initialLocations = [
   {
     id: 'jfdifjhiw3we',
     coordinate: {
@@ -29,11 +29,35 @@ const locations = [
     name: 'Park',
   },
 ];
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filterKeyword: '',
+      locations: initialLocations,
+      filteredLocations: initialLocations,
+    };
+
+    this.filterKeywordChange = this.filterKeywordChange.bind(this);
+  }
+
+  filterKeywordChange(keyword) {
+    this.setState({
+      filterKeyword: keyword,
+      filteredLocations: this.state.locations.filter((location) => {
+        return RegExp(keyword, 'i').test(location.name);
+      }),
+    });
+  }
+
   render() {
     return (
       <div>
-        <LocationList locations={locations} />
+        <LocationList
+          locations={this.state.filteredLocations}
+          keywordChange={this.filterKeywordChange}
+        />
         {/* <MapContainer locations={locations} /> */}
       </div>
     );
