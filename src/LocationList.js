@@ -15,7 +15,18 @@ function LocationList(props) {
       />
       <ul>
         {ips.map((ip) => {
-          return <li key={ip.ip_address}>{ip.ip_address}</li>;
+          return (
+            <li
+              key={ip.ip_address}
+              onClick={() => {
+                props.selectIp(ip.ip_address);
+              }}
+            >
+              {`${ip.ip_address} : ${
+                ip.selected ? 'selected' : 'not selected'
+              }`}
+            </li>
+          );
         })}
       </ul>
     </div>
