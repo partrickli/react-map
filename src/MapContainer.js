@@ -9,32 +9,27 @@ export class MapContainer extends React.Component {
       <div className="map-container">
         <Map
           google={this.props.google}
-          zoom={5}
+          zoom={13}
           initialCenter={{
-            lat: this.props.ips[0].latitude,
-            lng: this.props.ips[0].longitude,
-          }}
-          onClick={() => {
-            console.log('click');
+            lat: this.props.locations[0].latitude,
+            lng: this.props.locations[0].longitude,
           }}
         >
-          {this.props.ips.map((ip) => {
+          {this.props.locations.map((location) => {
             return (
               <Marker
                 position={{
-                  lat: ip.latitude,
-                  lng: ip.longitude,
+                  lat: location.latitude,
+                  lng: location.longitude,
                 }}
-                name={ip.city}
-                title={ip.ip_address}
-                key={ip.ip_address}
+                name={location.city}
+                title={location.description}
+                key={location.description}
                 animation={
-                  ip.selected
+                  location.selected
                     ? this.props.google.maps.Animation.BOUNCE
                     : undefined
                 }
-
-                // animation={this.props.google.maps.animation.BOUNCE}
               />
             );
           })}

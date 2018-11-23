@@ -2,32 +2,38 @@ import React, { Component } from 'react';
 import './App.css';
 import MapContainer from './MapContainer';
 import LocationList from './LocationList';
-import ips from './ip.js';
 
+const locations = [
+  {
+    description: 'Company',
+    latitude: 27.995118,
+    longitude: 120.712207,
+  },
+  {
+    description: 'Home',
+    latitude: 28.017123,
+    longitude: 120.612778,
+  },
+];
 class App extends Component {
   constructor(props) {
     super(props);
 
-    let _ips = ips.map((ip) => {
-      ip.selected = false;
-      return ip;
-    });
     this.state = {
       filterKeyword: '',
-      ips: _ips,
+      locations: locations,
     };
 
     this.filterKeywordChange = this.filterKeywordChange.bind(this);
-    this.selectIp = this.selectIp.bind(this);
+    this.selectLocation = this.selectLocation.bind(this);
   }
 
-  selectIp(ipAddress) {
-    console.log(`${ipAddress} selected`);
+  selectLocation(description) {
     this.setState({
-      ips: this.state.ips.map((ip) => {
-        return ip.ip_address === ipAddress
-          ? { ...ip, selected: !ip.selected }
-          : ip;
+      locations: this.state.locations.map((location) => {
+        return location.description === description
+          ? { ...location, selected: !location.selected }
+          : location;
       }),
     });
   }
@@ -39,18 +45,18 @@ class App extends Component {
   }
 
   render() {
-    const filteredIps = this.state.ips.filter((ip) => {
-      return RegExp(this.state.filterKeyword, 'i').test(ip.ip_address);
+    const filteredLocations = this.state.locations.filter((location) => {
+      return RegExp(this.state.filterKeyword, 'i').test(location.description);
     });
 
     return (
       <div>
         <LocationList
-          ips={filteredIps}
+          locations={filteredLocations}
           keywordChange={this.filterKeywordChange}
-          selectIp={this.selectIp}
+          selectLocation={this.selectLocation}
         />
-        <MapContainer ips={filteredIps} />
+        <MapContainer locations={filteredLocations} />
       </div>
     );
   }
