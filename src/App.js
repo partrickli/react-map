@@ -32,7 +32,7 @@ class App extends Component {
           ips={this.state.filteredIps}
           keywordChange={this.filterKeywordChange}
         />
-        {/* <MapContainer locations={locations} /> */}
+        <MapContainer ips={ips} />
       </div>
     );
   }
