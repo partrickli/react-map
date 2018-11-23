@@ -2,6 +2,7 @@ import React from 'react';
 
 function LocationList(props) {
   const locations = props.locations;
+
   return (
     <div className="location-list">
       <h1>Location List</h1>
@@ -16,15 +17,16 @@ function LocationList(props) {
         {locations.map((location) => {
           return (
             <li
-              className="list-group-item"
+              className={[
+                'list-group-item',
+                location.selected ? 'active' : '',
+              ].join(' ')}
               key={location.description}
               onClick={() => {
                 props.selectLocation(location.description);
               }}
             >
-              {`${location.description} : ${
-                location.selected ? 'selected' : 'not selected'
-              }`}
+              {`${location.description}`}
             </li>
           );
         })}

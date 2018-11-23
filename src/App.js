@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import MapContainer from './MapContainer';
 import LocationList from './LocationList';
-import 'bootstrap';
 
 const locations = [
   {
