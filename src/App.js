@@ -2,41 +2,15 @@ import React, { Component } from 'react';
 import './App.css';
 import MapContainer from './MapContainer';
 import LocationList from './LocationList';
-
-const initialLocations = [
-  {
-    id: 'jfdifjhiw3we',
-    coordinate: {
-      lat: 28.017153,
-      lng: 120.612753,
-    },
-    name: 'Home',
-  },
-  {
-    id: 'orutrn93958',
-    name: 'KFC',
-  },
-  {
-    id: 'djif',
-    name: 'Work',
-  },
-  {
-    id: 'ijeijigpe',
-    name: 'Shoping Mall',
-  },
-  {
-    id: 'dijfidoijfodios',
-    name: 'Park',
-  },
-];
+import ips from './ip.js';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       filterKeyword: '',
-      locations: initialLocations,
-      filteredLocations: initialLocations,
+      ips: ips,
+      filteredIps: ips,
     };
 
     this.filterKeywordChange = this.filterKeywordChange.bind(this);
@@ -45,8 +19,8 @@ class App extends Component {
   filterKeywordChange(keyword) {
     this.setState({
       filterKeyword: keyword,
-      filteredLocations: this.state.locations.filter((location) => {
-        return RegExp(keyword, 'i').test(location.name);
+      filteredIps: this.state.ips.filter((ip) => {
+        return RegExp(keyword, 'i').test(ip.ip_address);
       }),
     });
   }
@@ -55,7 +29,7 @@ class App extends Component {
     return (
       <div>
         <LocationList
-          locations={this.state.filteredLocations}
+          ips={this.state.filteredIps}
           keywordChange={this.filterKeywordChange}
         />
         {/* <MapContainer locations={locations} /> */}

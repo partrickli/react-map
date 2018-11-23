@@ -2,7 +2,7 @@ import React from 'react';
 import './LocationList.css';
 
 function LocationList(props) {
-  const locations = props.locations;
+  const ips = props.ips;
   return (
     <div className="location-list">
       <h1>Location List</h1>
@@ -14,8 +14,8 @@ function LocationList(props) {
         }}
       />
       <ul>
-        {locations.map((location) => {
-          return <li key={location.id}>{location.name}</li>;
+        {ips.map((ip) => {
+          return <li key={ip.ip_address}>{ip.ip_address}</li>;
         })}
       </ul>
     </div>
