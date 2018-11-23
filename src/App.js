@@ -42,7 +42,6 @@ class App extends Component {
     const filteredIps = this.state.ips.filter((ip) => {
       return RegExp(this.state.filterKeyword, 'i').test(ip.ip_address);
     });
-    console.log(filteredIps);
 
     return (
       <div>
@@ -51,7 +50,7 @@ class App extends Component {
           keywordChange={this.filterKeywordChange}
           selectIp={this.selectIp}
         />
-        <MapContainer ips={ips} />
+        <MapContainer ips={filteredIps} />
       </div>
     );
   }

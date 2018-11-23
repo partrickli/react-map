@@ -27,6 +27,14 @@ export class MapContainer extends React.Component {
                 }}
                 name={ip.city}
                 title={ip.ip_address}
+                key={ip.ip_address}
+                animation={
+                  ip.selected
+                    ? this.props.google.maps.Animation.BOUNCE
+                    : undefined
+                }
+
+                // animation={this.props.google.maps.animation.BOUNCE}
               />
             );
           })}
