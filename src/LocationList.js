@@ -1,5 +1,4 @@
 import React from 'react';
-import './LocationList.css';
 
 function LocationList(props) {
   const locations = props.locations;
@@ -13,10 +12,11 @@ function LocationList(props) {
           props.keywordChange(event.target.value);
         }}
       />
-      <ul>
+      <ul className="list-group">
         {locations.map((location) => {
           return (
             <li
+              className="list-group-item"
               key={location.description}
               onClick={() => {
                 props.selectLocation(location.description);
