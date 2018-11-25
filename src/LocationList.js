@@ -27,6 +27,11 @@ function LocationList(props) {
               }}
             >
               {`${location.description}`}
+              {location.selected ? (
+                <p> {`${location.latitude} | ${location.longitude}`} </p>
+              ) : (
+                ''
+              )}
             </li>
           );
         })}
