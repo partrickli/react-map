@@ -1,4 +1,5 @@
 import React from 'react';
+import './LocationList.css';
 
 function LocationList(props) {
   const locations = props.locations;

@@ -25,18 +25,15 @@ class App extends Component {
     };
 
     this.filterKeywordChange = this.filterKeywordChange.bind(this);
-    this.selectLocation = this.selectLocation.bind(this);
   }
 
-  selectLocation(description) {
+  selectLocation = (description) => {
     this.setState({
       locations: this.state.locations.map((location) => {
-        return location.description === description
-          ? { ...location, selected: !location.selected }
-          : location;
+        return { ...location, selected: location.description === description };
       }),
     });
-  }
+  };
 
   filterKeywordChange(keyword) {
     this.setState({
