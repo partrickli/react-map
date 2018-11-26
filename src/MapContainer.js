@@ -1,9 +1,27 @@
 import React from 'react';
 import './MapContainer.css';
-import { GoogleApiWrapper, Map } from 'google-maps-react';
+import { GoogleApiWrapper, Map, InfoWindow } from 'google-maps-react';
 import { Marker } from 'google-maps-react/dist/components/Marker';
 
 export class MapContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {},
+    };
+  }
+
+  onMarkerClick = (props, marker) => {
+    console.log(`${marker} clicked`);
+    this.setState({
+      showingInfoWindow: true,
+      activeMarker: marker,
+      selectedPlace: props,
+    });
+  };
+
   render() {
     return (
       <div className="map-container">
@@ -25,6 +43,7 @@ export class MapContainer extends React.Component {
                 name={location.city}
                 title={location.description}
                 key={location.description}
+                onClick={this.onMarkerClick}
                 animation={
                   location.selected
                     ? this.props.google.maps.Animation.BOUNCE
@@ -33,6 +52,14 @@ export class MapContainer extends React.Component {
               />
             );
           })}
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}
+          >
+            <div>
+              <h2>{this.state.selectedPlace.title}</h2>
+            </div>
+          </InfoWindow>
         </Map>
       </div>
     );
