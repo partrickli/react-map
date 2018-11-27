@@ -53,7 +53,10 @@ class App extends Component {
           keywordChange={this.filterKeywordChange}
           selectLocation={this.selectLocation}
         />
-        <MapContainer locations={filteredLocations} />
+        <MapContainer
+          locations={filteredLocations}
+          selectLocation={this.selectLocation}
+        />
       </div>
     );
   }

@@ -15,6 +15,7 @@ export class MapContainer extends React.Component {
 
   onMarkerClick = (props, marker) => {
     console.log(`${marker} clicked`);
+    this.props.selectLocation(marker.description);
     this.setState({
       showingInfoWindow: true,
       activeMarker: marker,
@@ -42,6 +43,7 @@ export class MapContainer extends React.Component {
                 }}
                 name={location.city}
                 title={location.description}
+                description={location.description}
                 key={location.description}
                 onClick={this.onMarkerClick}
                 animation={
