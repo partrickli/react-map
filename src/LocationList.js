@@ -4,8 +4,12 @@ import './LocationList.css';
 function LocationList(props) {
   const locations = props.locations;
 
+  let classes = [
+    'location-list',
+    props.isVisible ? 'list-visible' : 'list-invisible',
+  ].join(' ');
   return (
-    <div className="location-list">
+    <div className={classes}>
       <h1>Location List</h1>
       <input
         className="search"

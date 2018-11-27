@@ -22,6 +22,7 @@ class App extends Component {
     this.state = {
       filterKeyword: '',
       locations: locations,
+      isListVisible: false,
     };
 
     this.filterKeywordChange = this.filterKeywordChange.bind(this);
@@ -48,7 +49,19 @@ class App extends Component {
 
     return (
       <div>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={() => {
+            this.setState({
+              isListVisible: !this.state.isListVisible,
+            });
+          }}
+        >
+          Locations
+        </button>
         <LocationList
+          isVisible={this.state.isListVisible}
           locations={filteredLocations}
           keywordChange={this.filterKeywordChange}
           selectLocation={this.selectLocation}

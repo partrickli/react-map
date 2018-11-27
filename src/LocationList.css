@@ -9,3 +9,11 @@
   opacity: 0.7;
   color: darkslateblue;
 }
+
+.list-visible {
+  left: 0px;
+}
+
+.list-invisible {
+  left: -400px;
+}
