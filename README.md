@@ -17,3 +17,7 @@ Lanch app in a webpack development server. Open `localhost:3000` in browser such
 ### React map library
 
 `google-maps-react` is adopted for react style google map component.
+
+## Weather API
+
+https://www.worldweatheronline.com/

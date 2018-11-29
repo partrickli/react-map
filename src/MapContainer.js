@@ -28,10 +28,10 @@ export class MapContainer extends React.Component {
       <div className="map-container">
         <Map
           google={this.props.google}
-          zoom={13}
+          zoom={9}
           initialCenter={{
-            lat: this.props.locations[0].latitude,
-            lng: this.props.locations[0].longitude,
+            lat: 29.2672442155,
+            lng: 120.7617164449,
           }}
         >
           {this.props.locations.map((location) => {
