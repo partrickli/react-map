@@ -30,3 +30,10 @@
     transform: rotate(360deg);
   }
 }
+
+.list-toggle {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  z-index: 1001;
+}

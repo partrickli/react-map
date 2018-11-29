@@ -79,7 +79,7 @@ class App extends Component {
       <div>
         <button
           type="button"
-          className="btn btn-primary"
+          className="list-toggle btn btn-primary"
           onClick={() => {
             this.setState({
               isListVisible: !this.state.isListVisible,
