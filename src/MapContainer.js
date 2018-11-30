@@ -25,7 +25,7 @@ export class MapContainer extends React.Component {
 
   render() {
     return (
-      <div className="map-container">
+      <div role="application" aria-label="locations" className="map-container">
         <Map
           google={this.props.google}
           zoom={9}

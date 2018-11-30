@@ -9,7 +9,7 @@ function LocationList(props) {
     props.isVisible ? 'list-visible' : 'list-invisible',
   ].join(' ');
   return (
-    <div className={classes}>
+    <div className={classes} role="navigation" aria-label="LocationList">
       <input
         className="search"
         placeholder="Search"
