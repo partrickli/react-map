@@ -37,3 +37,15 @@
   top: 15px;
   z-index: 1001;
 }
+
+@media screen and (max-width: 600px) {
+  .list-toggle::after {
+    content: '=';
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .list-toggle::after {
+    content: 'Locations';
+  }
+}

@@ -85,9 +85,7 @@ class App extends Component {
               isListVisible: !this.state.isListVisible,
             });
           }}
-        >
-          Locations
-        </button>
+        />
         <LocationList
           isVisible={this.state.isListVisible}
           locations={filteredLocations}

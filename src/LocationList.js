@@ -10,9 +10,9 @@ function LocationList(props) {
   ].join(' ');
   return (
     <div className={classes}>
-      <h1>Location List</h1>
       <input
         className="search"
+        placeholder="Search"
         onChange={(event) => {
           console.log(event.target.value);
           props.keywordChange(event.target.value);
@@ -33,7 +33,10 @@ function LocationList(props) {
             >
               {`${location.description}`}
               {location.selected ? (
-                <p> {`${location.latitude} | ${location.longitude}`} </p>
+                <p className="detail">
+                  {' '}
+                  {`${location.latitude} | ${location.longitude}`}{' '}
+                </p>
               ) : (
                 ''
               )}
