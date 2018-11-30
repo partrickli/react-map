@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import MapContainer from './MapContainer';
 import LocationList from './LocationList';
+import { mapIf } from './util';
 
 const locations = [
   {
@@ -30,6 +31,7 @@ const locations = [
     longitude: 121.4205629493,
   },
 ];
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -45,15 +47,27 @@ class App extends Component {
 
   componentDidMount() {
     console.log('App did mount');
-    let city = 'wenzhou';
-    let queryString = `http://api.worldweatheronline.com/premium/v1/weather.ashx?key=547217b339f04bdf96e55115182711&q=${city}&format=json&num_of_days=5`;
-    // fetch(queryString)
-    //   .then((r) => r.json())
-    //   .then((cityWeather) => {
-    //     this.setState({
-    //       weather: [{ city: cityWeather }],
-    //     });
-    //   });
+    let citys = locations.map((location) => location.description);
+
+    citys.forEach((city) => {
+      let queryString = `http://api.worldweatheronline.com/premium/v1/weather.ashx?key=547217b339f04bdf96e55115182711&q=${city}&format=json&num_of_days=5`;
+      fetch(queryString)
+        .then((r) => r.json())
+        .then((cityWeather) => {
+          this.setState({
+            locations: mapIf(
+              locations,
+              (location) => {
+                return location.description === city;
+              },
+              (location) => {
+                location.weather = cityWeather;
+                return location;
+              }
+            ),
+          });
+        });
+    });
   }
 
   selectLocation = (description) => {
