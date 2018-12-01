@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import MapContainer from './MapContainer';
 import LocationList from './LocationList';
-import { mapIf } from './util';
+import { Collection } from './util';
 
 const locations = [
   {
@@ -50,20 +50,15 @@ class App extends Component {
     let citys = locations.map((location) => location.description);
 
     citys.forEach((city) => {
-      let queryString = `http://api.worldweatheronline.com/premium/v1/weather.ashx?key=547217b339f04bdf96e55115182711&q=${city}&format=json&num_of_days=5`;
+      const queryString = `http://api.worldweatheronline.com/premium/v1/weather.ashx?key=547217b339f04bdf96e55115182711&q=${city}&format=json&num_of_days=5`;
       fetch(queryString)
         .then((r) => r.json())
         .then((cityWeather) => {
+          let locationCollection = new Collection(...this.state.locations);
           this.setState({
-            locations: mapIf(
-              locations,
-              (location) => {
-                return location.description === city;
-              },
-              (location) => {
-                location.weather = cityWeather;
-                return location;
-              }
+            locations: locationCollection.conditionalMap(
+              (location) => location.description === city,
+              (location) => ({ ...location, weather: cityWeather })
             ),
           });
         });

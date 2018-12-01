@@ -1,9 +1,14 @@
-/**
- *
- * @param {any[]} array
- * @param {(element) => boolean} criteria
- * @param {(element) => any} transform
- */
-export function mapIf(array, criteria, transform) {
-  return array.map((e) => (criteria(e) ? transform(e) : e));
+export class Collection extends Array {
+  /**
+   * @template Element
+   * @template TransformedElement
+   * @param {(element: Element) => boolean} criteria
+   * @param {(element: Element) => TransformedElement} transform
+   * @returns {TransformedElement[]}
+   */
+  conditionalMap(criteria, transform) {
+    return this.map((element) => {
+      return criteria(element) ? transform(element) : element;
+    });
+  }
 }
