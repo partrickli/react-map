@@ -1,4 +1,5 @@
 import React from 'react';
+import './LocationItem.css';
 
 /**
  *
@@ -19,6 +20,7 @@ function LocationItem(props) {
     longitude,
     temperature,
   } = props;
+
   return (
     <li
       className={['list-group-item', selected ? 'active' : ''].join(' ')}
@@ -27,11 +29,8 @@ function LocationItem(props) {
         selectLocation(description);
       }}
     >
-      <h3>{description}</h3>
-      <p>{temperature} °C</p>
-      <p>
-        {longitude} : {latitude}
-      </p>
+      <h3 className={'display-4'}>{description}</h3>
+      <p className={'display-5'}>{temperature} °C</p>
     </li>
   );
 }
