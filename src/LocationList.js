@@ -32,6 +32,11 @@ function LocationList(props) {
               }}
             >
               {`${location.description}`}
+              <p>{`${
+                location.weather
+                  ? location.weather.data.current_condition[0].FeelsLikeC
+                  : 'unknown'
+              } °C`}</p>
               {location.selected ? (
                 <p className="detail">
                   {' '}
