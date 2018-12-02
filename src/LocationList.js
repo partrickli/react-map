@@ -1,8 +1,9 @@
 import React from 'react';
 import './LocationList.css';
+import LocationItem from './LocationItem';
 
 function LocationList(props) {
-  const locations = props.locations;
+  const { locations, selectLocation } = props;
 
   let classes = [
     'location-list',
@@ -21,31 +22,18 @@ function LocationList(props) {
       <ul className="list-group">
         {locations.map((location) => {
           return (
-            <li
-              className={[
-                'list-group-item',
-                location.selected ? 'active' : '',
-              ].join(' ')}
-              key={location.description}
-              onClick={() => {
-                props.selectLocation(location.description);
-              }}
-            >
-              {`${location.description}`}
-              <p>{`${
+            <LocationItem
+              selectLocation={selectLocation}
+              selected={location.selected}
+              description={location.description}
+              latitude={location.latitude}
+              longitude={location.longitude}
+              temperature={
                 location.weather
                   ? location.weather.data.current_condition[0].FeelsLikeC
                   : 'unknown'
-              } °C`}</p>
-              {location.selected ? (
-                <p className="detail">
-                  {' '}
-                  {`${location.latitude} | ${location.longitude}`}{' '}
-                </p>
-              ) : (
-                ''
-              )}
-            </li>
+              }
+            />
           );
         })}
       </ul>
