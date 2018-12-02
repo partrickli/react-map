@@ -9,6 +9,7 @@ function LocationList(props) {
     'location-list',
     props.isVisible ? 'list-visible' : 'list-invisible',
   ].join(' ');
+
   return (
     <div className={classes} role="navigation" aria-label="LocationList">
       <input
@@ -32,6 +33,12 @@ function LocationList(props) {
                 location.weather
                   ? location.weather.data.current_condition[0].FeelsLikeC
                   : 'unknown'
+              }
+              weatherDesc={
+                location.weather
+                  ? location.weather.data.current_condition[0].weatherDesc[0]
+                      .value
+                  : 'sunny or rainy, no idea'
               }
             />
           );

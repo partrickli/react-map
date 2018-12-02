@@ -1,3 +1,6 @@
 {
-    "javascript.implicitProjectConfig.checkJs": true
+  "javascript.implicitProjectConfig.checkJs": true,
+  "workbench.colorCustomizations": {
+    "editor.rangeHighlightBackground": "#780404"
+  }
 }
