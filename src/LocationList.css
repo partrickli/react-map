@@ -10,7 +10,7 @@
   position: absolute;
   left: 0px;
   height: 100%;
-  width: 300px;
+  width: 600px;
   opacity: 0.85;
   color: darkslateblue;
 }
@@ -20,10 +20,19 @@
 }
 
 .list-invisible {
-  left: -300px;
+  left: -600px;
 }
 
 .detail {
   font-size: 0.5em;
   color: lightgrey;
+}
+
+@media screen and (max-width: 600px) {
+  .location-list {
+    width: 100vw;
+  }
+  .list-invisible {
+    left: -100vw;
+  }
 }
