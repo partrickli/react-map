@@ -29,17 +29,8 @@ function LocationList(props) {
               key={location.description}
               latitude={location.latitude}
               longitude={location.longitude}
-              temperature={
-                location.weather
-                  ? location.weather.data.current_condition[0].FeelsLikeC
-                  : ''
-              }
-              weatherDesc={
-                location.weather
-                  ? location.weather.data.current_condition[0].weatherDesc[0]
-                      .value
-                  : ''
-              }
+              temperature={location.temperature}
+              weatherDesc={location.weatherDesc}
             />
           );
         })}

@@ -43,6 +43,8 @@ export class MapContainer extends React.Component {
                 name={location.description}
                 title={location.description}
                 description={location.description}
+                weatherDesc={location.weatherDesc}
+                temperature={location.temperature}
                 key={location.description}
                 onClick={this.onMarkerClick}
                 animation={
@@ -58,7 +60,8 @@ export class MapContainer extends React.Component {
             visible={this.state.showingInfoWindow}
           >
             <div>
-              <h2>{this.state.selectedPlace.title}</h2>
+              <h3>{this.state.selectedPlace.weatherDesc}</h3>
+              <h3>{this.state.selectedPlace.temperature}°C</h3>
             </div>
           </InfoWindow>
         </Map>
