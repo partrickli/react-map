@@ -27,6 +27,7 @@ function LocationList(props) {
               selectLocation={selectLocation}
               selected={location.selected}
               description={location.description}
+              key={location.description}
               latitude={location.latitude}
               longitude={location.longitude}
               temperature={

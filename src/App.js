@@ -39,7 +39,7 @@ class App extends Component {
     this.state = {
       filterKeyword: '',
       locations: locations,
-      isListVisible: false,
+      isListVisible: true,
     };
 
     this.filterKeywordChange = this.filterKeywordChange.bind(this);
