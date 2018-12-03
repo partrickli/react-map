@@ -14,7 +14,6 @@ export class MapContainer extends React.Component {
   }
 
   onMarkerClick = (props, marker) => {
-    console.log(`${marker} clicked`);
     this.props.selectLocation(marker.description);
     this.setState({
       showingInfoWindow: true,
@@ -41,7 +40,7 @@ export class MapContainer extends React.Component {
                   lat: location.latitude,
                   lng: location.longitude,
                 }}
-                name={location.city}
+                name={location.description}
                 title={location.description}
                 description={location.description}
                 key={location.description}

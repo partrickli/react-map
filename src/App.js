@@ -41,8 +41,6 @@ class App extends Component {
       locations: locations,
       isListVisible: true,
     };
-
-    this.filterKeywordChange = this.filterKeywordChange.bind(this);
   }
 
   componentDidMount() {
@@ -73,11 +71,11 @@ class App extends Component {
     });
   };
 
-  filterKeywordChange(keyword) {
+  filterKeywordChange = (keyword) => {
     this.setState({
       filterKeyword: keyword,
     });
-  }
+  };
 
   render() {
     const filteredLocations = this.state.locations.filter((location) => {

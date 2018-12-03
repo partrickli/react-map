@@ -16,7 +16,6 @@ function LocationList(props) {
         className="search"
         placeholder="Search"
         onChange={(event) => {
-          console.log(event.target.value);
           props.keywordChange(event.target.value);
         }}
       />
@@ -33,13 +32,13 @@ function LocationList(props) {
               temperature={
                 location.weather
                   ? location.weather.data.current_condition[0].FeelsLikeC
-                  : 'unknown'
+                  : ''
               }
               weatherDesc={
                 location.weather
                   ? location.weather.data.current_condition[0].weatherDesc[0]
                       .value
-                  : 'sunny or rainy, no idea'
+                  : ''
               }
             />
           );

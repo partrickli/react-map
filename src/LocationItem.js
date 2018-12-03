@@ -20,12 +20,12 @@ function LocationItem(props) {
     description,
     temperature,
   } = props;
+
   const list_class = ['list-group-item', selected ? 'active' : ''];
 
   return (
     <li
       className={list_class.join(' ')}
-      key={description}
       onClick={() => {
         selectLocation(description);
       }}
@@ -40,5 +40,3 @@ function LocationItem(props) {
 }
 
 export default LocationItem;
-
-// weather ? weather.data.current_condition[0].FeelsLikeC : 'unknown'
