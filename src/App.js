@@ -3,6 +3,7 @@ import './App.css';
 import MapContainer from './MapContainer';
 import LocationList from './LocationList';
 import { Collection } from './util';
+import fetchWeather from './weather';
 
 const locations = [
   {
@@ -45,31 +46,21 @@ class App extends Component {
 
   componentDidMount() {
     console.log('App did mount');
-    let citys = locations.map((location) => location.description);
+    let cityNames = locations.map((location) => location.description);
 
-    citys.forEach((city) => {
-      const queryString = `http://api.worldweatheronline.com/premium/v1/weather.ashx?key=547217b339f04bdf96e55115182711&q=${city}&format=json&num_of_days=5`;
-      fetch(queryString)
-        .then((r) => r.json())
-        .then((weather) => {
-          let locationCollection = new Collection(...this.state.locations);
-          this.setState({
-            locations: locationCollection.conditionalMap(
-              (location) => location.description === city,
-              (location) => {
-                return {
-                  ...location,
-                  temperature: weather
-                    ? weather.data.current_condition[0].FeelsLikeC
-                    : '',
-                  weatherDesc: weather
-                    ? weather.data.current_condition[0].weatherDesc[0].value
-                    : '',
-                };
-              }
-            ),
-          });
+    cityNames.forEach((cityName) => {
+      fetchWeather(cityName).then((weather) => {
+        const locationsCollection = new Collection(...this.state.locations);
+
+        const locationsWithWeather = locationsCollection.conditionalMap(
+          (location) => location.description === cityName,
+          (location) => ({ ...location, ...weather })
+        );
+
+        this.setState({
+          locations: locationsWithWeather,
         });
+      });
     });
   }
 
