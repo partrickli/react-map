@@ -97,7 +97,7 @@ class App extends Component {
         <LocationList
           isVisible={this.state.isListVisible}
           locations={filteredLocations}
-          keywordChange={this.filterKeywordChange}
+          filterKeywordChange={this.filterKeywordChange}
           selectLocation={this.selectLocation}
         />
         <MapContainer

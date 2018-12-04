@@ -1,9 +1,10 @@
 import React from 'react';
 import './LocationList.css';
 import LocationItem from './LocationItem';
+import LocationFilter from './LocationFilter';
 
 function LocationList(props) {
-  const { locations, selectLocation } = props;
+  const { locations, selectLocation, filterKeywordChange } = props;
 
   let classes = [
     'location-list',
@@ -12,13 +13,7 @@ function LocationList(props) {
 
   return (
     <div className={classes} role="navigation" aria-label="LocationList">
-      <input
-        className="search"
-        placeholder="Search"
-        onChange={(event) => {
-          props.keywordChange(event.target.value);
-        }}
-      />
+      <LocationFilter filterKeywordChange={filterKeywordChange} />
       <ul className="list-group">
         {locations.map((location) => {
           return (
