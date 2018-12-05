@@ -78,6 +78,12 @@ class App extends Component {
     });
   };
 
+  hideLocationList = () => {
+    this.setState({
+      isListVisible: false,
+    });
+  };
+
   render() {
     const filteredLocations = this.state.locations.filter((location) => {
       return RegExp(this.state.filterKeyword, 'i').test(location.description);
@@ -103,6 +109,7 @@ class App extends Component {
         <MapContainer
           locations={filteredLocations}
           selectLocation={this.selectLocation}
+          hideLocationList={this.hideLocationList}
         />
       </div>
     );

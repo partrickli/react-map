@@ -6,6 +6,7 @@ import { Marker } from 'google-maps-react/dist/components/Marker';
 export class MapContainer extends React.Component {
   onMarkerClick = (city) => {
     this.props.selectLocation(city);
+    this.props.hideLocationList();
   };
 
   render() {
@@ -38,7 +39,14 @@ export class MapContainer extends React.Component {
 
     return (
       <div role="application" aria-label="locations" className="map-container">
-        <Map google={this.props.google} zoom={9} initialCenter={initialCenter}>
+        <Map
+          google={this.props.google}
+          zoom={9}
+          initialCenter={initialCenter}
+          onClick={() => {
+            this.props.hideLocationList();
+          }}
+        >
           {locations.map((location) => {
             return (
               <Marker
