@@ -2,6 +2,7 @@ import React from 'react';
 import './MapContainer.css';
 import { GoogleApiWrapper, Map, InfoWindow } from 'google-maps-react';
 import { Marker } from 'google-maps-react/dist/components/Marker';
+import WeatherDetail from './WeatherDetail';
 
 export class MapContainer extends React.Component {
   onMarkerClick = (city) => {
@@ -70,10 +71,10 @@ export class MapContainer extends React.Component {
               visible={isAnyLocationSelected}
               position={selectedLocation.infoPosition}
             >
-              <div>
-                <h3>{selectedLocation.weatherDesc}</h3>
-                <h3>{selectedLocation.temperature}°C</h3>
-              </div>
+              <WeatherDetail
+                weatherDesc={selectedLocation.weatherDesc}
+                temperature={selectedLocation.temperature}
+              />
             </InfoWindow>
           )}
         </Map>

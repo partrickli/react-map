@@ -1,4 +1,5 @@
 import React from 'react';
+import WeatherDetail from './WeatherDetail';
 import './LocationItem.css';
 
 /**
@@ -32,10 +33,7 @@ function LocationItem(props) {
     >
       <h3 className={'display-4'}>{description}</h3>
       {selected && (
-        <div className={'weather-detail-container'}>
-          <p className={'display-5'}>{temperature} °C</p>
-          <p className={'display-5'}>{weatherDesc} </p>
-        </div>
+        <WeatherDetail weatherDesc={weatherDesc} temperature={temperature} />
       )}
     </li>
   );
