@@ -27,8 +27,10 @@ function LocationItem(props) {
   return (
     <li
       className={list_class.join(' ')}
-      onClick={() => {
+      tabIndex={0}
+      onClick={(event) => {
         selectLocation(description);
+        event.target.focus();
       }}
     >
       <h3 className={'display-4'}>{description}</h3>
