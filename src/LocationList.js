@@ -6,9 +6,14 @@ import LocationFilter from './LocationFilter';
 function LocationList(props) {
   const { locations, selectLocation, filterKeywordChange } = props;
 
+  const isAnyLocationSelected = locations.some((location) => {
+    return location.selected === true;
+  });
+
   let classes = [
     'location-list',
     props.isVisible ? 'list-visible' : 'list-invisible',
+    isAnyLocationSelected ? 'item-selected' : '',
   ].join(' ');
 
   return (

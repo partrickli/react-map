@@ -97,6 +97,12 @@ class App extends Component {
           onClick={() => {
             this.setState({
               isListVisible: !this.state.isListVisible,
+              locations: this.state.locations.map((location) => {
+                return {
+                  ...location,
+                  selected: false,
+                };
+              }),
             });
           }}
         />

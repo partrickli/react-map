@@ -35,4 +35,8 @@
   .list-invisible {
     left: -100vw;
   }
+
+  .item-selected {
+    left: -100vw;
+  }
 }
