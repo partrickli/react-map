@@ -4,49 +4,51 @@ import { GoogleApiWrapper, Map, InfoWindow } from 'google-maps-react';
 import { Marker } from 'google-maps-react/dist/components/Marker';
 
 export class MapContainer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showingInfoWindow: false,
-      activeMarker: {},
-      selectedPlace: {},
-    };
-  }
-
-  onMarkerClick = (props, marker) => {
-    this.props.selectLocation(marker.description);
-    this.setState({
-      showingInfoWindow: true,
-      activeMarker: marker,
-      selectedPlace: props,
-    });
+  onMarkerClick = (city) => {
+    this.props.selectLocation(city);
   };
 
   render() {
+    const initialCenter = {
+      lat: 29.2672442155,
+      lng: 120.7617164449,
+    };
+
+    const locations = this.props.locations.map((location) => {
+      return {
+        ...location,
+        position: {
+          lat: location.latitude,
+          lng: location.longitude,
+        },
+        infoPosition: {
+          lat: location.latitude + 0.1,
+          lng: location.longitude + 0.1,
+        },
+      };
+    });
+
+    const selectedLocation = locations.find((location) => {
+      return location.selected === true;
+    });
+
+    const isAnyLocationSelected = locations.some((location) => {
+      return location.selected === true;
+    });
+
     return (
       <div role="application" aria-label="locations" className="map-container">
-        <Map
-          google={this.props.google}
-          zoom={9}
-          initialCenter={{
-            lat: 29.2672442155,
-            lng: 120.7617164449,
-          }}
-        >
-          {this.props.locations.map((location) => {
+        <Map google={this.props.google} zoom={9} initialCenter={initialCenter}>
+          {locations.map((location) => {
             return (
               <Marker
-                position={{
-                  lat: location.latitude,
-                  lng: location.longitude,
-                }}
-                name={location.description}
-                title={location.description}
-                description={location.description}
+                position={location.position}
                 weatherDesc={location.weatherDesc}
                 temperature={location.temperature}
                 key={location.description}
-                onClick={this.onMarkerClick}
+                onClick={() => {
+                  this.onMarkerClick(location.description);
+                }}
                 animation={
                   location.selected
                     ? this.props.google.maps.Animation.BOUNCE
@@ -55,15 +57,17 @@ export class MapContainer extends React.Component {
               />
             );
           })}
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}
-          >
-            <div>
-              <h3>{this.state.selectedPlace.weatherDesc}</h3>
-              <h3>{this.state.selectedPlace.temperature}°C</h3>
-            </div>
-          </InfoWindow>
+          {isAnyLocationSelected && (
+            <InfoWindow
+              visible={isAnyLocationSelected}
+              position={selectedLocation.infoPosition}
+            >
+              <div>
+                <h3>{selectedLocation.weatherDesc}</h3>
+                <h3>{selectedLocation.temperature}°C</h3>
+              </div>
+            </InfoWindow>
+          )}
         </Map>
       </div>
     );
